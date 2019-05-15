@@ -4,7 +4,7 @@ export function getData() {
 
 export function postCard(event) {
   const { tags, title, description } = event.target
-  const tagArray = tags.value.split(',')
+  const tagArray = tags.value.split(',').map(value => value.trim())
   return fetch('/cards', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
@@ -16,13 +16,12 @@ export function postCard(event) {
   }).then(res => res.json())
 }
 
-export function patchCard(target) {
-  console.log(target)
-  return fetch(`/cards/:_id`, {
-    method: 'PUT',
+export function patchCard(card) {
+  return fetch(`/cards/${card._id}`, {
+    method: 'PATCH',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({
-      bookmarked: !target.value
+      bookmarked: !card.bookmarked
     })
   }).then(res => res.json())
 }

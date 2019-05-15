@@ -1,4 +1,14 @@
 import React from 'react'
+import styled from 'styled-components'
+
+const Formbox = styled.form`
+  height: 80vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 400px;
+`
 
 function FormInput({ name }) {
   return (
@@ -9,13 +19,16 @@ function FormInput({ name }) {
   )
 }
 
-export function CreateForm(props) {
+export function CreateForm({ history, onSubmit }) {
   return (
-    <form onSubmit={props.onSubmit}>
-      <FormInput name={'title'} />
-      <FormInput name={'description'} />
-      <FormInput name={'tags'} />
-      <button>Submit</button>
-    </form>
+    <>
+      <h1>Create Card</h1>
+      <Formbox onSubmit={event => onSubmit(event, history)}>
+        <FormInput name={'title'} />
+        <FormInput name={'description'} />
+        <FormInput name={'tags'} />
+        <button>Submit</button>
+      </Formbox>
+    </>
   )
 }

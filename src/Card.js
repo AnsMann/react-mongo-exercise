@@ -8,7 +8,7 @@ export default function Card(props) {
       <h2>{title}</h2>
       <p>{desc}</p>
       <div>{Tag(tags)}</div>
-      <button onClick={onClick} className='bookmark'>
+      <button onClick={props => onClick(props)} className='bookmark'>
         {bookmarkStatus ? 'Bookmarked' : 'Bookmark'}
       </button>
     </li>
