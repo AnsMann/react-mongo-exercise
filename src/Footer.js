@@ -8,15 +8,19 @@ const StyledLink = styled(NavLink)`
   padding: 10px;
   text-decoration: none;
   color: black;
+  border: 1px solid white;
   &.active {
     background: crimson;
   }
 `
 
-const StyledFooter = styled.footer``
+const StyledFooter = styled.footer`
+  background: grey;
+  height: 100%;
+`
 
 const StyledNav = styled.nav`
-  height: 30px;
+  height: 100%;
   display: flex;
   align-items: center;
 `
@@ -25,7 +29,9 @@ export function Navigation() {
   return (
     <StyledFooter>
       <StyledNav>
-        <StyledLink to='/cards'>Cards</StyledLink>
+        <StyledLink exact to='/'>
+          Cards
+        </StyledLink>
         <StyledLink to='/create'>Create</StyledLink>
       </StyledNav>
     </StyledFooter>

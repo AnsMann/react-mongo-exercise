@@ -14,6 +14,7 @@ li {
   grid-template-rows: 30px auto auto;
   width: 400px;
   position: relative;
+  margin-bottom: 20px;
 }
 
 h2 {

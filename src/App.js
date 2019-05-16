@@ -35,7 +35,7 @@ export default class App extends Component {
         this.setState({ cards: [...this.state.cards, card] })
       })
       .catch(err => console.log(err))
-    history.push('/cards')
+    history.push('/')
   }
 
   updateCard = newCard => {
@@ -44,8 +44,14 @@ export default class App extends Component {
   }
 
   handleClickBookmark = card => {
+    const { cards } = this.state
     patchCard(card)
-      .then(data => this.setState({ cards: data }))
+      .then(newCard => {
+        const index = cards.findIndex(card => card._id === newCard._id)
+        this.setState({
+          cards: [...cards.slice(0, index), newCard, ...cards.slice(index + 1)]
+        })
+      })
       .catch(err => console.log(err))
   }
 
@@ -63,7 +69,8 @@ export default class App extends Component {
         <GlobalStyles />
         <BrowserRouter>
           <Route
-            path='/cards'
+            exact
+            path='/'
             render={props => (
               <CardList
                 cards={cards}

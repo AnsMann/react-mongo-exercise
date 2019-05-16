@@ -9,25 +9,42 @@ const Formbox = styled.form`
   align-items: center;
   width: 400px;
 `
+const StyledLabel = styled.label`
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  margin: 10px 0;
+`
+const SubmitButton = styled.button`
+  width: 100%;
+  margin: 10px 0;
+  font-size: 20px;
+`
+const Headline = styled.h1`
+  background: grey;
+  height: 100%;
+  color: black;
+  text-align: center;
+`
 
 function FormInput({ name }) {
   return (
-    <label>
-      {name.toUpperCase()}:{' '}
+    <StyledLabel>
+      {name.toUpperCase()}:
       <input name={name} type='text' placeholder={`insert ${name} here`} />
-    </label>
+    </StyledLabel>
   )
 }
 
 export function CreateForm({ history, onSubmit }) {
   return (
     <>
-      <h1>Create Card</h1>
+      <Headline>Create Card</Headline>
       <Formbox onSubmit={event => onSubmit(event, history)}>
         <FormInput name={'title'} />
         <FormInput name={'description'} />
         <FormInput name={'tags'} />
-        <button>Submit</button>
+        <SubmitButton>Submit</SubmitButton>
       </Formbox>
     </>
   )

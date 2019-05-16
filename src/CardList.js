@@ -7,11 +7,17 @@ const Cardbox = styled.div`
   overflow: scroll;
   justify-items: center;
 `
+const Headline = styled.h1`
+  background: grey;
+  height: 100%;
+  color: black;
+  text-align: center;
+`
 
 export function CardList({ cards, onClickBookmark }) {
   return (
     <>
-      <h1>Cards</h1>
+      <Headline>Cards</Headline>
       <Cardbox>
         <ul>
           {cards.map(card => (
@@ -21,7 +27,7 @@ export function CardList({ cards, onClickBookmark }) {
               desc={card.description}
               tags={card.tags}
               bookmarkStatus={card.bookmarked}
-              onClick={onClickBookmark}
+              onClick={() => onClickBookmark(card)}
             />
           ))}
         </ul>
