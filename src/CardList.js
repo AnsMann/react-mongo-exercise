@@ -13,7 +13,7 @@ const Headline = styled.h1`
   color: black;
   text-align: center;
 `
-const StyledList = styled.li`
+const StyledList = styled.ul`
   list-style-type: none;
   display: flex;
   flex-direction: column;
@@ -22,6 +22,7 @@ const StyledList = styled.li`
 `
 
 export function CardList({ cards, onClickBookmark }) {
+  console.log('abc')
   return (
     <>
       <Headline>Cards</Headline>

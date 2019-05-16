@@ -33,6 +33,9 @@ export default function App() {
     getData()
       .then(allCards => setCards(allCards))
       .catch(error => console.log(error))
+  }, [])
+
+  useEffect(() => {
     setLocal('cardsInLocalStorage', cards)
   }, [cards])
 
