@@ -30,10 +30,7 @@ export function CardList({ cards, onClickBookmark }) {
           {cards.map(card => (
             <Card
               key={card._id}
-              title={card.title}
-              desc={card.description}
-              tags={card.tags}
-              bookmarkStatus={card.bookmarked}
+              {...card}
               onClick={() => onClickBookmark(card)}
             />
           ))}

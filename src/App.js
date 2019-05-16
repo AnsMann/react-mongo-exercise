@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { useState, useEffect } from 'react'
 import { getData, postCard, setLocal, getLocal, patchCard } from './services'
 import { CardList } from './CardList'
 import { CreateForm } from './Form'
@@ -26,71 +26,52 @@ const Grid = styled.main`
   align-items: center;
 `
 
-export default class App extends Component {
-  state = {
-    cards: getLocal('cardsInLocalStorage') || []
-  }
+export default function App() {
+  const [cards, setCards] = useState(getLocal('cardsInLocalStorage') || [])
 
-  componentDidMount() {
+  useEffect(() => {
     getData()
-      .then(data => this.setState({ cards: data }))
+      .then(allCards => setCards(allCards))
       .catch(error => console.log(error))
-  }
+    setLocal('cardsInLocalStorage', cards)
+  }, [cards])
 
-  handleSubmit = (event, history) => {
+  function handleSubmit(event, history) {
     event.preventDefault()
     postCard(event)
       .then(card => {
-        this.setState({ cards: [...this.state.cards, card] })
+        setCards([...cards, card])
       })
       .catch(err => console.log(err))
     history.push('/')
   }
 
-  handleClickBookmark = card => {
-    const { cards } = this.state
+  function handleClickBookmark(card) {
     patchCard(card)
       .then(newCard => {
         const index = cards.findIndex(card => card._id === newCard._id)
-        this.setState({
-          cards: [...cards.slice(0, index), newCard, ...cards.slice(index + 1)]
-        })
+        setCards([...cards.slice(0, index), newCard, ...cards.slice(index + 1)])
       })
       .catch(err => console.log(err))
   }
 
-  componentDidUpdate(prevProps, prevState) {
-    if (prevState.cards !== this.state) {
-      setLocal('cardsInLocalStorage', this.state)
-    }
-  }
-
-  render() {
-    const { cards } = this.state
-
-    return (
-      <Grid>
-        <GlobalStyles />
-        <BrowserRouter>
-          <Route
-            exact
-            path='/'
-            render={props => (
-              <CardList
-                cards={cards}
-                onClickBookmark={this.handleClickBookmark}
-              />
-            )}
-          />
-          <Route
-            path='/create'
-            render={props => (
-              <CreateForm onSubmit={this.handleSubmit} {...props} />
-            )}
-          />
-          <Navigation />
-        </BrowserRouter>
-      </Grid>
-    )
-  }
+  return (
+    <Grid>
+      <GlobalStyles />
+      <BrowserRouter>
+        <Route
+          exact
+          path='/'
+          render={props => (
+            <CardList cards={cards} onClickBookmark={handleClickBookmark} />
+          )}
+        />
+        <Route
+          path='/create'
+          render={props => <CreateForm onSubmit={handleSubmit} {...props} />}
+        />
+        <Navigation />
+      </BrowserRouter>
+    </Grid>
+  )
 }

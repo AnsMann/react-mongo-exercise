@@ -45,14 +45,14 @@ const Bookmark = styled.button`
 `
 
 export default function Card(props) {
-  const { title, desc, tags, bookmarkStatus, onClick } = props
+  const { title, description, tags, bookmarked, onClick } = props
   return (
     <StyledCard>
       <Title>{title}</Title>
-      <Description>{desc}</Description>
+      <Description>{description}</Description>
       <Tagbox>{Tag(tags)}</Tagbox>
       <Bookmark onClick={onClick}>
-        {bookmarkStatus ? 'Bookmarked' : 'Bookmark'}
+        {bookmarked ? 'Bookmarked' : 'Bookmark'}
       </Bookmark>
     </StyledCard>
   )
