@@ -11,7 +11,7 @@ const Title = styled.h2`
 `
 const StyledCard = styled.li`
   display: grid;
-  grid-template-rows: 30px auto auto;
+  grid-template-rows: 40px auto auto;
   width: 400px;
   position: relative;
   margin-bottom: 20px;
@@ -33,14 +33,15 @@ const Tagbox = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-evenly;
+  min-height: 50px;
 `
 
 const Bookmark = styled.button`
-  background: salmon;
+  background: aqua;
   padding: 5px;
   position: absolute;
-  bottom: 5px;
-  left: 5px;
+  top: 5px;
+  right: 5px;
   border: none;
 `
 

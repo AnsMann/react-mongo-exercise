@@ -11,5 +11,5 @@ const StyledTag = styled.span`
 `
 
 export function Tag(tagList) {
-  return tagList.map(tag => <StyledTag>{tag}</StyledTag>)
+  return tagList.map(tag => tag && <StyledTag>{tag}</StyledTag>)
 }
