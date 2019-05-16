@@ -7,7 +7,16 @@ import { BrowserRouter, Route, history } from 'react-router-dom'
 import styled, { createGlobalStyle } from 'styled-components'
 
 const GlobalStyles = createGlobalStyle`
-height: 100vh;
+* {
+  box-sizing: border-box;
+}
+body {height: 100vh;
+  margin: 0;
+  padding: 20px;
+  font-family: sans-serif;
+  color: darkslategray;
+  background: papayawhip;
+}
 `
 
 const Grid = styled.main`
@@ -36,11 +45,6 @@ export default class App extends Component {
       })
       .catch(err => console.log(err))
     history.push('/')
-  }
-
-  updateCard = newCard => {
-    const cards = this.state.cards.slice()
-    const index = this.state.cards.findIndex(card => card._id === newCard.id)
   }
 
   handleClickBookmark = card => {

@@ -13,13 +13,20 @@ const Headline = styled.h1`
   color: black;
   text-align: center;
 `
+const StyledList = styled.li`
+  list-style-type: none;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 0;
+`
 
 export function CardList({ cards, onClickBookmark }) {
   return (
     <>
       <Headline>Cards</Headline>
       <Cardbox>
-        <ul>
+        <StyledList>
           {cards.map(card => (
             <Card
               key={card._id}
@@ -30,7 +37,7 @@ export function CardList({ cards, onClickBookmark }) {
               onClick={() => onClickBookmark(card)}
             />
           ))}
-        </ul>
+        </StyledList>
       </Cardbox>
     </>
   )
