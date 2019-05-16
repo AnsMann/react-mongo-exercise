@@ -23,8 +23,8 @@ const Description = styled.p`
   margin: 0;
   border-left: solid 1px;
   border-right: solid 1px;
-}
 `
+
 const Tagbox = styled.div`
   border-bottom: solid 1px;
   border-left: solid 1px;

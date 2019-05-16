@@ -3,7 +3,7 @@ import { getData, postCard, setLocal, getLocal, patchCard } from './services'
 import { CardList } from './CardList'
 import { CreateForm } from './Form'
 import { Navigation } from './Footer'
-import { BrowserRouter, Route, history } from 'react-router-dom'
+import { BrowserRouter, Route } from 'react-router-dom'
 import styled, { createGlobalStyle } from 'styled-components'
 
 const GlobalStyles = createGlobalStyle`
